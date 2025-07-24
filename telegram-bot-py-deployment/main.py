@@ -2,7 +2,7 @@ from typing import Final
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 
-TOKEN: Final= "7629948369:AAHG3avP7AQ_NfD6_jUvJwmRnlnLAnuBLiA"
+TOKEN: Final= ""
 
 BOT_USERNAME: Final = "@wadia1_bot"
 
