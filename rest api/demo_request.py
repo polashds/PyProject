@@ -1,74 +1,113 @@
 # demo_request.py
 import requests
 from config import APIConfig
+import logging
 
-# === GET request ===
-print("=== GET /users ===")
+# =============================
+# Configure Logging
+# =============================
+logging.basicConfig(
+    level=logging.INFO,  # Use DEBUG for more verbose logs
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[
+        logging.FileHandler("api_demo.log", mode="a", encoding="utf-8"),  # log to file
+        logging.StreamHandler()  # also print to console
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+
+# =============================
+# GET Request
+# =============================
 def safe_get_users():
+    url = f"{APIConfig.BASE_URL}/users"
+    logger.info("Starting GET request to %s", url)
+
     try:
         response = requests.get(
-            f"{APIConfig.BASE_URL}/users",
+            url,
             headers=APIConfig.get_headers(),
             timeout=APIConfig.TIMEOUT
         )
 
-        print("Status Code:", response.status_code)
-        print("First user:", response.json()[0])  # show first user
-
+        logger.debug("Raw GET response: %s", response.text)
         response.raise_for_status()
+
         users = response.json()
-        print("✅ GET successful. First user:", users[0])
+        if users:
+            print("✅ GET successful. First user:", users[0])
+            logger.info("✅ GET successful. First user: %s", users[0])
+        else:
+            logger.warning("GET successful but no users returned.")
 
     except requests.exceptions.Timeout:
-        print("Request timed out.")
+        logger.error("⏱️ Request timed out for GET /users")
 
     except requests.exceptions.ConnectionError:
-        print("Connection error.")
-    except requests.exceptions.HTTPError:
-        print("HTTP error.")
+        logger.error("❌ Connection error during GET /users")
+
+    except requests.exceptions.HTTPError as e:
+        logger.error("📡 HTTP error during GET /users: %s", e)
+
     except Exception as e:
-        print(f"An error occurred: {e}")
+        logger.exception("Unexpected error during GET /users: %s", e)
 
-# === POST request ===
-print("\n=== POST /posts ===")
 
+# =============================
+# POST Request
+# =============================
 def safe_posts():
-    try:
-        new_post = {
-            "title": "Hello API World",
-            "body": "This is a demo post from Python requests.",
-            "userId": 1
-        }
+    url = f"{APIConfig.BASE_URL}/posts"
+    logger.info("Starting POST request to %s", url)
 
+    new_post = {
+        "title": "Hello API World",
+        "body": "This is a demo post from Python requests.",
+        "userId": 1
+    }
+
+    logger.debug("Payload for POST: %s", new_post)
+
+    try:
         response_post = requests.post(
-            f"{APIConfig.BASE_URL}/posts",
+            url,
             headers=APIConfig.get_headers(),
-            json=new_post,  # send data as JSON
+            json=new_post,
             timeout=APIConfig.TIMEOUT
         )
 
-        print("Status Code:", response_post.status_code)  # usually 201
-        print("Response JSON:", response_post.json())
-
+        logger.debug("Raw POST response: %s", response_post.text)
         response_post.raise_for_status()
-        print("✅ POST successful. New post:", response_post.json())
 
-        response_post.raise_for_status()
+        post_data = response_post.json()
+        print("✅ POST successful. New post:", post_data)
+        logger.info("✅ POST successful. New post response: %s", post_data)
 
     except requests.exceptions.Timeout:
-        print("Request timed out.")
+        logger.error("⏱️ Request timed out for POST /posts")
 
     except requests.exceptions.ConnectionError:
-        print("Connection error.")
-    except requests.exceptions.HTTPError:
-        print("HTTP error.")
+        logger.error("❌ Connection error during POST /posts")
+
+    except requests.exceptions.HTTPError as e:
+        logger.error("📡 HTTP error during POST /posts: %s", e)
+
     except Exception as e:
-        print(f"An error occurred: {e}")
+        logger.exception("Unexpected error during POST /posts: %s", e)
 
 
-if __name__ == "__main__":  # only run if this file is executed directly
+# =============================
+# Main Entry Point
+# =============================
+if __name__ == "__main__":
+    logger.info("=== Starting demo_request.py ===")
+
     print("=== GET /users ===")
     safe_get_users()
 
     print("\n=== POST /posts ===")
     safe_posts()
+
+    logger.info("=== Script completed ===")
