@@ -10,6 +10,6 @@ async def main():
     content = await read_file_async("dummy_dataset.csv")
     print(content)
 
-
+# to run 
 if __name__ == "__main__":
     asyncio.run(main())
