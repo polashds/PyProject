@@ -1,0 +1,19 @@
+{
+  "source": "ShopA",
+  "timestamp": "2025-09-28T06:01:10.052629",
+  "users_count": 2,
+  "products_count": 2,
+  "orders_count": 2,
+  "users": [
+    "ShopA-Alice",
+    "ShopA-Bob"
+  ],
+  "products": [
+    "ShopA-Laptop",
+    "ShopA-Phone"
+  ],
+  "orders": [
+    "ShopA-Order1",
+    "ShopA-Order2"
+  ]
+}
