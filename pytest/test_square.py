@@ -7,6 +7,9 @@ class TestSquare(unittest.TestCase):
         area = square.area()
         self.assertEqual(area, 100)
 
-
-if __name__ == '__main__':
-    unittest.main()
+#Running tests without calling unittest.main()
+# if __name__ == '__main__':
+#     unittest.main(verbosity=2)
+#python -m unittest , -m stands for module
+# for more info
+# python -m unittest -v
