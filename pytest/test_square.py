@@ -12,6 +12,13 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             square = Square("10")
 
+
+    def test_length_with_zero_or_negative_number(self):
+        with self.assertRaises(ValueError):
+            square = Square(-10)
+            square = Square(0)
+
+            
 #Running tests without calling unittest.main()
 # if __name__ == '__main__':
 #     unittest.main(verbosity=2)
