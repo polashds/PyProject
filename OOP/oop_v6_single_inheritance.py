@@ -53,3 +53,12 @@ The greet() method in the Employee is also called the greet() method
 
 employee = Employee("Polash", 25, "Python Developer")
 print(employee.greet())
+
+
+
+# # easier version without using super()
+# class Employee:
+#     def __init__(self, name, age, job_title):
+#         self.name = name       # set name
+#         self.age = age         # set age
+#         self.job_title = job_title  # set job title
