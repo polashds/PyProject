@@ -33,5 +33,13 @@ If the area is equal to 100, the assertEqual() will pass the test. Otherwise, th
 Before running the test, you need to call the main() function of the unittest module as follows:
 '''
 
+# if __name__ == '__main__':
+#     unittest.main()
+
+# python test_square.py
+# To get more detailed information on the test result, 
+# you pass the verbosity argument with the value 2 to the unittest.main() function:
+
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
+
