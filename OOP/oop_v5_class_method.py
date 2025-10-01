@@ -22,7 +22,7 @@ class Person:
         return Person("Anonymous", 11)
        
 
-# calling the class method
+# calling the class method by dot notation 
 anonymous = Person.create_anonymous()
 print(anonymous.name)  # Anonymous
 

@@ -15,16 +15,15 @@ the child class can access the attributes and methods of the parent class.
 
 class Employee(Person):
     def __init__(self, name, age, job_title):
-        # call the parent (Person) __init__ to set name and age
+        #super() calls the parent (Person) __init__ to set name and age
         super().__init__(name, age)
 
         # add a new attribute only for Employee
         self.job_title = job_title
 
 '''
-Inside the __init__ method of the Employee
-class, super(). calls the __init__method of the Person class
- to initialize the name and age attributes.
+Inside the __init__ method of the Employeemclass, super(). calls the __init__ 
+method of the Person class to initialize the name and age attributes.
 '''
 # The super() allows a child class to access a method of the parent class.
 # The Employee class extends the Person class by adding one more attribute 

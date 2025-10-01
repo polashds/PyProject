@@ -10,7 +10,7 @@
 # Attributes are the data that belong to the object. 
 # Methods are the actions that the object can perform.
 # Methods are functions inside the class that objects can use.
-# analogy: class as blueprint → object as product → attributes as features/properties → methods as actions)
+# analogy: class as blueprint → object as product → attributes as features/properties of products→ methods as actions)
 # Object and Instance are essentially the same thing.
 # But the difference is in how we talk about them
 # We use the word instance when we want to emphasize that it was created from a class.
@@ -28,5 +28,5 @@
 # They are defined in the class body outside the __init__ method.
 
 # Instance Methods:
-# Functions that belong to the class, but work on an instance (object).
-#Always take self as the first parameter (so they know which object they are working with).
+# Functions that/are belong to the class, but work on an instance (object).
+#Always take self as the first parameter (so they come to know which object they are working with).

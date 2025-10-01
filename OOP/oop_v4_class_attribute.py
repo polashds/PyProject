@@ -14,7 +14,7 @@ class Person:
     def greet(self):
         return f'Hi, its {self.name}'
     
-# access the counter attribute from the Person class:
+# access the counter attribute from the Person class use dot notation:
 print(Person.counter)
 
 # Or from any instances of the Person class:
